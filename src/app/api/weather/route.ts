@@ -30,10 +30,7 @@ export async function GET(request: NextRequest) {
         city
       )}&appid=${apiKey}&units=metric`,
       {
-        next: {
-          revalidate: 600, // 10 minutes
-          tags: [`weather-${city.toLowerCase()}`], // Cache per city
-        },
+        cache: 'no-store',
       }
     );
 
