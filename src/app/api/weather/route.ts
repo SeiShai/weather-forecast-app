@@ -30,16 +30,16 @@ export async function GET(request: NextRequest) {
         city
       )}&appid=${apiKey}&units=metric`,
       {
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        next: {
+          revalidate: 600, // 10 minutes
+          tags: [`weather-${city.toLowerCase()}`], // Cache per city
+        },
       }
     );
 
     if (!response.ok) {
       if (response.status === 404) {
-        return NextResponse.json(
-          { error: "City not found" },
-          { status: 404 }
-        );
+        return NextResponse.json({ error: "City not found" }, { status: 404 });
       }
       throw new Error("Failed to fetch weather data");
     }
