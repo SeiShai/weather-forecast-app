@@ -42,7 +42,7 @@ export default function HomePage() {
   };
 
   // Get today's hourly forecast
-  const todayForecast = forecast?.list.slice(2, 9) || []
+  const todayForecast = forecast?.list.slice(2, 9) || [];
 
   // Get 7-day forecast (one entry per day at noon)
   const weekForecast =
@@ -54,18 +54,18 @@ export default function HomePage() {
       .slice(0, 7) || [];
 
   // Helper function to format time (falls back to user's locale if city timezone not available)
-    const formatCityTime = (timestamp: number) => {
-      if (!weather) return "";
-  
-      // display the time in the browser's local timezone based on the UTC timestamp.
-      const date = new Date(timestamp * 1000);
-      const options: Intl.DateTimeFormatOptions = {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-      };
-      return date.toLocaleTimeString("en-US", options);
+  const formatCityTime = (timestamp: number) => {
+    if (!weather) return "";
+
+    // display the time in the browser's local timezone based on the UTC timestamp.
+    const date = new Date(timestamp * 1000);
+    const options: Intl.DateTimeFormatOptions = {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     };
+    return date.toLocaleTimeString("en-US", options);
+  };
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
@@ -77,16 +77,16 @@ export default function HomePage() {
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="Search for a city... (e.g., London, Tokyo, New York)"
-              className="flex-1 px-6 py-4 backdrop-blur-md bg-white/20 border border-white/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/60 text-lg font-medium"
+              placeholder="Search for a city..."
+              className="flex-1 px-6 py-4 backdrop-blur-md bg-white/20 border border-white/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/60 text-lg font-medium lg:ml-0 ml-16"
               required
             />
             <button
               type="submit"
               disabled={loading}
-              className="bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500 hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 text-white px-8 py-4 rounded-2xl font-bold disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+              className="bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500 hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 text-white px-6 lg:px-8 py-4 rounded-2xl font-bold disabled:opacity-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
-              {loading ? "⏳" : "🔍 Search"}
+              {loading ? "⏳" : "🔍"}
             </button>
           </div>
           {error && (
